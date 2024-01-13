@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=sBitx
+Exec=/home/pi/sbitx/sbitx
+Comment=
+Terminal=false
+Icon=/home/pi/sbitx/sbitx_icon.png
+Type=Application
