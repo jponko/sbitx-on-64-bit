@@ -5,7 +5,7 @@ sudo apt install git freeglut3-dev libasound2-dev libncurses-dev \
 chromium-browser sqlite3 libsqlite3-dev ntp ntpstat iptables \
 libgtk-3-dev deepin-icon-theme build-essential cmake autotools-dev debconf-utils \
 libsamplerate0-dev libxft-dev libfltk1.1-dev libsndfile1-dev libportaudio2 \
-portaudio19-dev iptables wsjtx-data wsjtx-doc fldigi \
+portaudio19-dev iptables wsjtx wsjtx-data wsjtx-doc fldigi \
 libhamlib-* -y
 cd 
 git clone https://github.com/afarhan/sbitx.git
@@ -72,7 +72,7 @@ cd sbitx
 ./build sbitx
 cd
 mkdir Desktop
-cp sbitx-on-64-bit/sBitx.desktop /home/pi/Desktop
+cp sbitx/sBitx.desktop ../Desktop
 echo "Done installing!"
 echo "run sudo raspi-config and under System Options > Boot / Auto Login, select Desktop Autologin as 'pi' and reboot"
 echo "Don't forget to copy your sbitx/data files from your SD card to the /home/ip/sbits directory!"
