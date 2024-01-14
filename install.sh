@@ -110,6 +110,10 @@ Type=Application
 EOF
 #
 echo "Task completed, please check the menu."
+cd 
+cd .config
+tar -zxvf ~/sbitx-on-64-bit/dconf.tar.gz
+cd
 sudo raspi-config nonint do_boot_behaviour B4
 echo "Done installing!"
 echo "Don't forget to copy your sbitx/data files from your SD card to the /home/ip/sbits directory!"
@@ -122,7 +126,7 @@ read -s -N 1 -t 1 key
 
 if [ "$key" = $'\e' ]; then
         echo -e "\n [ESC] Pressed"
-        break
+        exit
 elif [ "$key" == $'\x0a' ] ;then
         echo -e "\n [Enter] Pressed"
         break
