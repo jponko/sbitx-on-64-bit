@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/bash # -v
 sudo apt install cinnamon-desktop-environment -y
 sudo apt install git freeglut3-dev libasound2-dev libncurses-dev \
 chromium-browser sqlite3 libsqlite3-dev ntp ntpstat iptables \
@@ -65,7 +65,7 @@ cd sbitx-on-64bit
 cp WSJT-X.ini /home/pi/.config
 cd
 unzip -o sbitx-on-64-bit/pi.zip
-mkdir fldigi
+#mkdir fldigi
 cd fldigi
 sudo sed -i 's/#deb/deb/g' /etc/apt/sources.list
 sudo apt-get install aptitude -y
