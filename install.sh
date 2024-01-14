@@ -5,7 +5,8 @@ sudo apt install git freeglut3-dev libasound2-dev libncurses-dev \
 chromium-browser sqlite3 libsqlite3-dev ntp ntpstat iptables \
 libgtk-3-dev deepin-icon-theme build-essential cmake autotools-dev debconf-utils \
 libsamplerate0-dev libxft-dev libfltk1.1-dev libsndfile1-dev libportaudio2 \
-portaudio19-dev build-dep iptables wsjtx-data wsjtx-doc -y
+portaudio19-dev iptables wsjtx-data wsjtx-doc fldigi \
+libhamlib-* -y
 cd 
 git clone https://github.com/afarhan/sbitx.git
 #
@@ -58,50 +59,11 @@ cd
 cd sbitx
 sudo cp hosts /etc/hosts
 sudo cp hostname /etc/hostname
-# WSJTX install
-cd
-wget https://wsjt.sourceforge.io/downloads/wsjtx_2.6.1_arm64.deb
-sudo dpkg -i wsjtx_2.6.1_arm64.deb
 #
 cd sbitx-on-64bit
 cp WSJT-X.ini /home/pi/.config
 cd
 unzip -o sbitx-on-64-bit/pi.zip
-mkdir fldigi
-cd fldigi
-sudo sed -i 's/#deb/deb/g' /etc/apt/sources.list
-sudo apt-get install aptitude -y
-sudo aptitude update
-#sudo aptitude build-dep fldigi
-sudo apt-get update
-sudo apt-get build-dep fldigi -y
-#wget http://www.w1hkj.com/alpha/fldigi/fldigi-4.2.03.14.tar.gz
-#tar -zxvf fldigi-4.2.03.14.tar.gz
-#
-unzip -o /home/pi/sbitx-on-64-bit/fldigi-4.1.20.zip
-unzip -o /home/pi/sbitx-on-64-bit/flrig-1.4.5.zip
-unzip -o /home/pi/sbitx-on-64-bit/hamlib-4.4.zip
-#
-#
-cd fldigi-4.1.20
-# Fix CFLAGS -remove 3dnow and sse options which arenot vaild on arm64
-sudo sed -i 's/-mno-3dnow//g' configure
-sudo sed -i 's/-mfpmath=sse//g' configure
-./configure --enable-optimizations=native
-make
-sudo make install
-cd
-cd fldigi/flrig-1.4.5
-sudo sed -i 's/-mno-3dnow//g' configure
-sudo sed -i 's/-mfpmath=sse//g' configure
-./configure --enable-optimizations=native
-make
-sudo make install
-cd
-cd fldigi/hamlib-4.4
-./configure
-make
-sudo make install
 sudo ldconfig
 cd
 cd sbitx
