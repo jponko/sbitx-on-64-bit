@@ -92,11 +92,12 @@ cd sbitx
 cd
 # Setup sBitx desktop and add to Hamradio menu
 mkdir Desktop
-mkdir -p /home/pi/.local/share/applications/
+mkdir -p ~/.local/share/applications/
 cp sbitx-on-64-bit/sBitx.desktop ~/Desktop
-cp sbitx-on-64-bit/sBitx.desktop /home/pi/.local/share/applications/
+chmod +x ~/Desktop/sBitx.desktop
 echo "Creating ~/.local/share/applications/sBitx.desktop"
 cat > "/home/pi/.local/share/applications/sBitx.desktop" <<"EOF"
+chmod +x ~/.local/share/applications/sBitx.desktop
 [Desktop Entry]
 Name=sBitx
 Exec=/home/pi/sbitx/sbitx
