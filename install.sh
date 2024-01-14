@@ -1,12 +1,11 @@
 #!/bin/bash
 #
-sudo apt install cinnamon-desktop-environment -y
 #
 sudo apt install git freeglut3-dev libasound2-dev libncurses-dev \
 chromium-browser sqlite3 libsqlite3-dev ntp ntpstat iptables \
 libgtk-3-dev deepin-icon-theme build-essential cmake autotools-dev debconf-utils \
 libsamplerate0-dev libxft-dev libfltk1.1-dev libsndfile1-dev libportaudio2 \
-portaudio19-dev build-dep iptables -y
+portaudio19-dev build-dep iptables wsjtx-data wsjtx-doc -y
 cd 
 git clone https://github.com/afarhan/sbitx.git
 #
@@ -63,7 +62,7 @@ sudo cp hostname /etc/hostname
 cd
 wget https://wsjt.sourceforge.io/downloads/wsjtx_2.6.1_arm64.deb
 sudo dpkg -i wsjtx_2.6.1_arm64.deb
-sudo apt install wsjtx-data -y
+#
 cd sbitx-on-64bit
 cp WSJT-X.ini /home/pi/.config
 cd
@@ -108,6 +107,7 @@ cd
 cd sbitx
 ./build sbitx
 cd
+sudo apt install cinnamon-desktop-environment -y
 cp sbitx-on-64-bit/sBitx.desktop /home/pi/Desktop
 echo "Done installing!"
 echo "run sudo raspi-config and under System Options > Boot / Auto Login, select Desktop Autologin as 'pi' and reboot"
