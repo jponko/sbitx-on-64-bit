@@ -1,4 +1,6 @@
 #!/bin/bash
+sudo apt update -y
+sudo apt upgrade -y
 sudo apt install cinnamon-desktop-environment -y
 #
 sudo apt install git freeglut3-dev libasound2-dev libncurses-dev \
