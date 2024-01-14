@@ -1,11 +1,12 @@
-#!/bin/bash | tee -a install.log
+#!/bin/bash
 #
 sudo apt install cinnamon-desktop-environment -y
+#
 sudo apt install git freeglut3-dev libasound2-dev libncurses-dev \
 chromium-browser sqlite3 libsqlite3-dev ntp ntpstat iptables \
 libgtk-3-dev deepin-icon-theme build-essential cmake autotools-dev debconf-utils \
 libsamplerate0-dev libxft-dev libfltk1.1-dev libsndfile1-dev libportaudio2 \
-portaudio19-dev build-dep -y
+portaudio19-dev build-dep iptables -y
 cd 
 git clone https://github.com/afarhan/sbitx.git
 #
@@ -40,6 +41,7 @@ grep "; autospawn = yes" /etc/pulse/client.conf
 if [ $? -eq 0 ]
     then sudo sed -i 's/; autospawn = yes/autospawn = no/g' /etc/pulse/client.conf
 fi
+sudo ldconfig
 #enable loopback now
 sudo modprobe snd-aloop enable=1,1,1 index=1,2,3
 # Setup iptables
@@ -66,7 +68,7 @@ cd sbitx-on-64bit
 cp WSJT-X.ini /home/pi/.config
 cd
 unzip -o sbitx-on-64-bit/pi.zip
-#mkdir fldigi
+mkdir fldigi
 cd fldigi
 sudo sed -i 's/#deb/deb/g' /etc/apt/sources.list
 sudo apt-get install aptitude -y
