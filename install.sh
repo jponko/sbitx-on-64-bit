@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash | tee -a install.log
 #
 sudo apt install cinnamon-desktop-environment -y
 sudo apt install git freeglut3-dev libasound2-dev libncurses-dev \
