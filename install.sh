@@ -88,7 +88,6 @@ sudo sed -i 's/-mfpmath=sse//g' configure
 ./configure --enable-optimizations=native
 make
 sudo make install
-exit
 cd
 cd fldigi/flrig-1.4.5
 sudo sed -i 's/-mno-3dnow//g' configure
