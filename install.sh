@@ -79,19 +79,20 @@ cd sbitx
 ./build sbitx
 cd
 mkdir Desktop
-cp sbitx/sBitx.desktop ~/Desktop
-cp sbitx/sBitx.desktop /home/pi/.local/share/applications/
+mkdir -p /home/pi/.local/share/applications/
+cp sbitx-on-64-bit/sBitx.desktop ~/Desktop
+cp sbitx-on-64-bit/sBitx.desktop /home/pi/.local/share/applications/
 echo "Creating ~/.local/share/applications/sBitx.desktop"
-cat > "/home/$SUDO_USER/.local/share/applications/sBitx.desktop" <<"EOF"
-
+cat > "/home/pi/.local/share/applications/sBitx.desktop" <<"EOF"
 [Desktop Entry]
-Name=Test
-Comment=New item should be in electronics directory
+Name=sBitx
+Exec=/home/pi/sbitx/sbitx
+Comment=
+Terminal=false
+Icon=/home/pi/sbitx/sbitx_icon.png
+Categories=Hamradio
+Keywords=Hamradio;
 Type=Application
-Exec=nemo
-Icon=nemo
-Categories=Electronics
-Keywords=electronics;
 EOF
 #
 echo "Task completed, please check the menu."
@@ -110,9 +111,10 @@ if [ "$key" = $'\e' ]; then
         break
 elif [ "$key" == $'\x0a' ] ;then
         echo -e "\n [Enter] Pressed"
-        sudo reboot
+        break
 fi
 done
+sudo reboot
 exit
 
 
