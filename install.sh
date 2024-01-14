@@ -1,5 +1,5 @@
 #!/bin/bash -v
-sudo apt istall cinnamon-desktop-environment -y
+sudo apt install cinnamon-desktop-environment -y
 sudo apt install git freeglut3-dev libasound2-dev libncurses-dev \
 chromium-browser sqlite3 libsqlite3-dev ntp ntpstat iptables \
 libgtk-3-dev deepin-icon-theme build-essential cmake autotools-dev debconf-utils \
@@ -60,6 +60,7 @@ sudo cp hostname /etc/hostname
 cd
 wget https://wsjt.sourceforge.io/downloads/wsjtx_2.6.1_arm64.deb
 sudo dpkg -i wsjtx_2.6.1_arm64.deb
+sudo apt install wsjtx-data -y
 cd sbitx-on-64bit
 cp WSJT-X.ini /home/pi/.config
 cd
@@ -67,11 +68,11 @@ unzip -o sbitx-on-64-bit/pi.zip
 mkdir fldigi
 cd fldigi
 sudo sed -i 's/#deb/deb/g' /etc/apt/sources.list
-sudo apt-get install aptitude
+sudo apt-get install aptitude -y
 sudo aptitude update
 #sudo aptitude build-dep fldigi
 sudo apt-get update
-sudo apt-get build-dep fldigi
+sudo apt-get build-dep fldigi -y
 #wget http://www.w1hkj.com/alpha/fldigi/fldigi-4.2.03.14.tar.gz
 #tar -zxvf fldigi-4.2.03.14.tar.gz
 #
