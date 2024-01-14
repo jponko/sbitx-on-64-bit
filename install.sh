@@ -18,9 +18,9 @@ libhamlib-* -y
 # Install Lightdm desktop manager
 sudo apt install lightdm lightdm-settings lightdm-autologin-greeter -y
 cd
-cp sbitx-on-64-bit/lightdm-autologin-greeter /etc/lightdm/lightdm.conf.d/
+sudo cp sbitx-on-64-bit/lightdm-autologin-greeter /etc/lightdm/lightdm.conf.d/
 # install some background images and Pi's .config settings 
-unzip sbitx-on-64-bit/Backgrounds
+unzip -o sbitx-on-64-bit/Backgrounds
 sudo tar -zxvf sbitx-on-64-bit/config.tgz
 # Install Farhan's sbitx software from github'
 git clone https://github.com/afarhan/sbitx.git
