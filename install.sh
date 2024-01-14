@@ -73,9 +73,24 @@ cd sbitx
 cd
 mkdir Desktop
 cp sbitx/sBitx.desktop ../Desktop
+sudo raspi-config nonint do_boot_behaviour B2
 echo "Done installing!"
-echo "run sudo raspi-config and under System Options > Boot / Auto Login, select Desktop Autologin as 'pi' and reboot"
 echo "Don't forget to copy your sbitx/data files from your SD card to the /home/ip/sbits directory!"
+IFS=''
+echo -e "Press [ENTER] to reboot..."
+for (( i=1000; i>0; i--)); do
+
+printf "\rRebooting in $i seconds..."
+read -s -N 1 -t 1 key
+
+if [ "$key" = $'\e' ]; then
+        echo -e "\n [ESC] Pressed"
+        break
+elif [ "$key" == $'\x0a' ] ;then
+        echo -e "\n [Enter] Pressed"
+        sudo reboot
+fi
+done
 exit
 
 
