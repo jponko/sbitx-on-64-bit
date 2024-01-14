@@ -90,6 +90,8 @@ cd
 cd sbitx
 ./build sbitx
 cd
+# Extract cached desklets applets
+tar -zxvf sbitx-on-64-bit/cache.tgz
 # Setup sBitx desktop and add to Hamradio menu
 mkdir Desktop
 mkdir -p ~/.local/share/applications/
@@ -110,9 +112,7 @@ Type=Application
 EOF
 #
 echo "Task completed, please check the menu."
-cd 
-cd .config
-tar -zxvf ~/sbitx-on-64-bit/dconf.tar.gz
+#
 cd
 sudo raspi-config nonint do_boot_behaviour B4
 echo "Done installing!"
