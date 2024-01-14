@@ -84,7 +84,7 @@ cd sbitx-on-64bit
 cp WSJT-X.ini /home/pi/.config
 cd
 # copy some other saved settings from the original SD card
-unzip sbitx-on-64-bit/pi.zip -d /home/pi
+unzip -o sbitx-on-64-bit/pi.zip -d /home/
 sudo ldconfig
 cd
 cd sbitx
