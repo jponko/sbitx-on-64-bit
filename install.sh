@@ -1,22 +1,30 @@
 #!/bin/bash
+echo "----------------------------------------------"
+echo "This will take about 45 minutes to complete."
+echo "----------------------------------------------"
+sleep 5
+# Update and install OS
 sudo apt update -y
 sudo apt upgrade -y
+# Install Cinnamon desktop
 sudo apt install cinnamon-desktop-environment -y
-#
+# Install some depandant packages and apps
 sudo apt install git freeglut3-dev libasound2-dev libncurses-dev \
 chromium-browser sqlite3 libsqlite3-dev ntp ntpstat iptables \
 libgtk-3-dev deepin-icon-theme build-essential cmake autotools-dev debconf-utils \
 libsamplerate0-dev libxft-dev libfltk1.1-dev libsndfile1-dev libportaudio2 \
 portaudio19-dev iptables wsjtx wsjtx-data wsjtx-doc fldigi \
 libhamlib-* -y
-#
+# Install Lightdm desktop manager
 sudo apt install lightdm lightdm-settings lightdm-autologin-greeter -y
 cd
 cp sbitx-on-64-bit/lightdm-autologin-greeter /etc/lightdm/lightdm.conf.d/
+# install some background images and Pi's .config settings 
 unzip sbitx-on-64-bit/Backgrounds
 sudo tar -zxvf sbitx-on-64-bit/config.tgz
+# Install Farhan's sbitx software from github'
 git clone https://github.com/afarhan/sbitx.git
-#
+# Follow Farhan's install.txt instructions'
 grep "modprobe snd-aloop" /etc/rc.local
 if [ $? -eq 1 ]
  then sudo sed -i '13 i modprobe snd-aloop enable=1,1,1 index=1,2,3' /etc/rc.local
@@ -25,16 +33,18 @@ fi
 echo sudo modprobe snd-aloop enable=1,1,1 index=1,2,3 
 #copy boot setup config file to /boot
 sudo cp sbitx-on-64-bit/config.txt /boot
-#fix sbitx/ft8_lib/Makefile
+# Fix sbitx/ft8_lib/Makefile
 cd sbitx/ft8_lib
 sed -i 's/-std=c11/-std=c++0x/g' Makefile
 make
 sudo make install
+# Install my version of WiringPi for ARM64
 cd 
 cd sbitx-on-64-bit
 tar -zxvf WiringPi-arm64.tgz
 cd WiringPi-arm64
 ./build
+# Test if working
 gpio readall
 cd
 cd sbitx-on-64-bit
@@ -50,8 +60,9 @@ grep "; autospawn = yes" /etc/pulse/client.conf
 if [ $? -eq 0 ]
     then sudo sed -i 's/; autospawn = yes/autospawn = no/g' /etc/pulse/client.conf
 fi
+# Make available the compiled libs 
 sudo ldconfig
-#enable loopback now
+# Enable loopback device now
 sudo modprobe snd-aloop enable=1,1,1 index=1,2,3
 # Setup iptables
 sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
@@ -63,21 +74,23 @@ iptables-persistent iptables-persistent/autosave_v4 boolean true
 iptables-persistent iptables-persistent/autosave_v6 boolean true
 EOF
 sudo apt-get -y install iptables-persistent
-# Set hostname & host files
+# Copy hostname & host files to /etc if custom imager settings weren't used' 
 cd
 cd sbitx
 sudo cp hosts /etc/hosts
 sudo cp hostname /etc/hostname
-#
+# Copy SD cards WSJTX ini to pi/.config
 cd sbitx-on-64bit
 cp WSJT-X.ini /home/pi/.config
 cd
-unzip -o sbitx-on-64-bit/pi.zip
+# copy some other saved settings from the original SD card
+unzip sbitx-on-64-bit/pi.zip -d /home/pi
 sudo ldconfig
 cd
 cd sbitx
 ./build sbitx
 cd
+# Setup sBitx desktop and add to Hamradio menu
 mkdir Desktop
 mkdir -p /home/pi/.local/share/applications/
 cp sbitx-on-64-bit/sBitx.desktop ~/Desktop
