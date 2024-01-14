@@ -1,4 +1,5 @@
-#!/bin/bash # -v
+#!/bin/bash
+#
 sudo apt install cinnamon-desktop-environment -y
 sudo apt install git freeglut3-dev libasound2-dev libncurses-dev \
 chromium-browser sqlite3 libsqlite3-dev ntp ntpstat iptables \
