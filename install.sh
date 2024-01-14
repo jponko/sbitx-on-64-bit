@@ -10,7 +10,7 @@ libsamplerate0-dev libxft-dev libfltk1.1-dev libsndfile1-dev libportaudio2 \
 portaudio19-dev iptables wsjtx wsjtx-data wsjtx-doc fldigi \
 libhamlib-* -y
 #
-sudo apt install lightdm lightdm-settings lightdm-autologin-greeter
+sudo apt install lightdm lightdm-settings lightdm-autologin-greeter -y
 cd
 cp sbitx-on-64-bit/lightdm-autologin-greeter /etc/lightdm/lightdm.conf.d/
 unzip sbitx-on-64-bit/Backgrounds
@@ -80,6 +80,21 @@ cd sbitx
 cd
 mkdir Desktop
 cp sbitx/sBitx.desktop ~/Desktop
+cp sbitx/sBitx.desktop /home/pi/.local/share/applications/
+echo "Creating ~/.local/share/applications/sBitx.desktop"
+cat > "/home/$SUDO_USER/.local/share/applications/sBitx.desktop" <<"EOF"
+
+[Desktop Entry]
+Name=Test
+Comment=New item should be in electronics directory
+Type=Application
+Exec=nemo
+Icon=nemo
+Categories=Electronics
+Keywords=electronics;
+EOF
+#
+echo "Task completed, please check the menu."
 sudo raspi-config nonint do_boot_behaviour B4
 echo "Done installing!"
 echo "Don't forget to copy your sbitx/data files from your SD card to the /home/ip/sbits directory!"
