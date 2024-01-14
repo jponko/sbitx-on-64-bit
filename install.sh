@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+sudo apt install cinnamon-desktop-environment -y
 #
 sudo apt install git freeglut3-dev libasound2-dev libncurses-dev \
 chromium-browser sqlite3 libsqlite3-dev ntp ntpstat iptables \
@@ -107,7 +107,7 @@ cd
 cd sbitx
 ./build sbitx
 cd
-sudo apt install cinnamon-desktop-environment -y
+mkdir Desktop
 cp sbitx-on-64-bit/sBitx.desktop /home/pi/Desktop
 echo "Done installing!"
 echo "run sudo raspi-config and under System Options > Boot / Auto Login, select Desktop Autologin as 'pi' and reboot"
