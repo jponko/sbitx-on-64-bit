@@ -21,6 +21,8 @@ sudo cp sbitx-on-64-bit/config.txt /boot
 #fix sbitx/ft8_lib/Makefile
 cd sbitx/ft8_lib
 sed -i 's/-std=c11/-std=c++0x/g' Makefile
+make
+sudo make install
 cd 
 cd sbitx-on-64-bit
 tar -zxvf WiringPi-arm64.tgz
