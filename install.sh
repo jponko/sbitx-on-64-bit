@@ -7,7 +7,12 @@ libgtk-3-dev deepin-icon-theme build-essential cmake autotools-dev debconf-utils
 libsamplerate0-dev libxft-dev libfltk1.1-dev libsndfile1-dev libportaudio2 \
 portaudio19-dev iptables wsjtx wsjtx-data wsjtx-doc fldigi \
 libhamlib-* -y
-cd 
+#
+sudo apt install lightdm lightdm-settings lightdm-autologin-greeter
+cd
+cp sbitx-on-64-bit/lightdm-autologin-greeter /etc/lightdm/lightdm.conf.d/
+unzip sbitx-on-64-bit/Backgrounds
+sudo tar -zxvf sbitx-on-64-bit/config.tgz
 git clone https://github.com/afarhan/sbitx.git
 #
 grep "modprobe snd-aloop" /etc/rc.local
@@ -72,8 +77,8 @@ cd sbitx
 ./build sbitx
 cd
 mkdir Desktop
-cp sbitx/sBitx.desktop ../Desktop
-sudo raspi-config nonint do_boot_behaviour B2
+cp sbitx/sBitx.desktop ~/Desktop
+sudo raspi-config nonint do_boot_behaviour B4
 echo "Done installing!"
 echo "Don't forget to copy your sbitx/data files from your SD card to the /home/ip/sbits directory!"
 IFS=''
