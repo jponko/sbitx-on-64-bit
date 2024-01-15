@@ -16,9 +16,11 @@ libsamplerate0-dev libxft-dev libfltk1.1-dev libsndfile1-dev libportaudio2 \
 portaudio19-dev iptables wsjtx wsjtx-data wsjtx-doc fldigi \
 libhamlib-* -y
 #
+sudo raspi-config nonint do_boot_behaviour B4
 sudo cd /home
 # pi's preconfigured desktop
 sudo tar-zxvf /home/pi/sbitx-on-64-bit/pi-tgz
+sudo reboot
 # Install Lightdm desktop manager
 #sudo apt install lightdm lightdm-settings lightdm-autologin-greeter -y
 #cd
@@ -127,7 +129,6 @@ EOF
 echo "Task completed, please check the menu."
 #
 cd
-sudo raspi-config nonint do_boot_behaviour B4
 echo "Done installing!"
 echo "Don't forget to copy your sbitx/data files from your SD card to the /home/ip/sbits directory!"
 IFS=''
