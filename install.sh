@@ -89,10 +89,10 @@ sudo ldconfig
 cd
 cd sbitx
 ./build sbitx
-cd
 # Extract cached desklets applets
 tar -zxvf sbitx-on-64-bit/cache.tgz
 # Setup sBitx desktop and add to Hamradio menu
+cd
 mkdir Desktop
 mkdir Documents
 mkdir Downloads
