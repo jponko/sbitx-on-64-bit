@@ -18,7 +18,7 @@ libhamlib-* -y
 # Install Lightdm desktop manager
 sudo apt install lightdm lightdm-settings lightdm-autologin-greeter -y
 cd
-sudo cp sbitx-on-64-bit/lightdm-autologin-greeter /etc/lightdm/lightdm.conf.d/
+sudo cp sbitx-on-64-bit/lightdm-autologin-greeter.conf /etc/lightdm/lightdm.conf.d/
 # install some background images and Pi's .config settings 
 unzip -o sbitx-on-64-bit/Backgrounds
 sudo tar -zxvf sbitx-on-64-bit/config.tgz
@@ -94,12 +94,20 @@ cd
 tar -zxvf sbitx-on-64-bit/cache.tgz
 # Setup sBitx desktop and add to Hamradio menu
 mkdir Desktop
+mkdir Documents
+mkdir Downloads
+mkdir Music
+mkdir Pictures
+mkdir Videos
+# add color folder
+sudo unzip -o sbitx-on-64-bit/nemo-share.zip -d /usr/share
+#
 mkdir -p ~/.local/share/applications/
 cp sbitx-on-64-bit/sBitx.desktop ~/Desktop
 chmod +x ~/Desktop/sBitx.desktop
 echo "Creating ~/.local/share/applications/sBitx.desktop"
-cat > "/home/pi/.local/share/applications/sBitx.desktop" <<"EOF"
 chmod +x ~/.local/share/applications/sBitx.desktop
+cat > "/home/pi/.local/share/applications/sBitx.desktop" <<"EOF"
 [Desktop Entry]
 Name=sBitx
 Exec=/home/pi/sbitx/sbitx
