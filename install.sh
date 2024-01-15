@@ -20,15 +20,10 @@ sudo raspi-config nonint do_boot_behaviour B4
 sudo cd /home
 # pi's preconfigured desktop
 sudo tar-zxvf /home/pi/sbitx-on-64-bit/pi.tgz
-sudo reboot
-# Install Lightdm desktop manager
-#sudo apt install lightdm lightdm-settings lightdm-autologin-greeter -y
-#cd
 #sudo cp sbitx-on-64-bit/lightdm-autologin-greeter.conf /etc/lightdm/lightdm.conf.d/
 # install some background images and Pi's .config settings 
-#cd
-#unzip -o sbitx-on-64-bit/Backgrounds
-#sudo tar -zxvf sbitx-on-64-bit/config.tgz
+cd
+unzip -o sbitx-on-64-bit/Backgrounds
 # Install Farhan's sbitx software from github'
 git clone https://github.com/afarhan/sbitx.git
 # Follow Farhan's install.txt instructions'
@@ -53,6 +48,7 @@ cd WiringPi-arm64
 ./build
 # Test if working
 gpio readall
+sleep 10
 cd
 cd sbitx-on-64-bit
 tar -zxvf fftw-3.3.10.tar.gz
@@ -67,10 +63,8 @@ grep "; autospawn = yes" /etc/pulse/client.conf
 if [ $? -eq 0 ]
     then sudo sed -i 's/; autospawn = yes/autospawn = no/g' /etc/pulse/client.conf
 fi
-# Make available the compiled libs 
+# Make available the compiled libs  
 sudo ldconfig
-# Enable loopback device now
-sudo modprobe snd-aloop enable=1,1,1 index=1,2,3
 # Setup iptables
 sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
 sudo iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 80 -j REDIRECT --to-ports 8080
@@ -96,19 +90,7 @@ sudo ldconfig
 cd
 cd sbitx
 ./build sbitx
-# Extract cached desklets applets
-#tar -zxvf sbitx-on-64-bit/cache.tgz
-# Setup sBitx desktop and add to Hamradio menu
-#cd
-#mkdir Desktop
-#mkdir Documents
-#mkdir Downloads
-#mkdir Music
-#mkdir Pictures
-#mkdir Videos
-# add color folder
-#sudo unzip -o sbitx-on-64-bit/nemo-share.zip -d /usr/share
-#
+# Setup sBitx.desktop and add to Hamradio menu
 mkdir -p ~/.local/share/applications/
 cp sbitx-on-64-bit/sBitx.desktop ~/Desktop
 chmod +x ~/Desktop/sBitx.desktop
@@ -133,7 +115,7 @@ echo "Done installing!"
 echo "Don't forget to copy your sbitx/data files from your SD card to the /home/ip/sbits directory!"
 IFS=''
 echo -e "Press [ENTER] to reboot..."
-for (( i=1000; i>0; i--)); do
+for (( i=120; i>0; i--)); do
 
 printf "\rRebooting in $i seconds..."
 read -s -N 1 -t 1 key
@@ -148,7 +130,4 @@ fi
 done
 sudo reboot
 exit
-
-
-
 
