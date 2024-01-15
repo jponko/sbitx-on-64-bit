@@ -15,13 +15,18 @@ libgtk-3-dev deepin-icon-theme build-essential cmake autotools-dev debconf-utils
 libsamplerate0-dev libxft-dev libfltk1.1-dev libsndfile1-dev libportaudio2 \
 portaudio19-dev iptables wsjtx wsjtx-data wsjtx-doc fldigi \
 libhamlib-* -y
+#
+sudo cd /home
+# pi's preconfigured desktop
+sudo tar-zxvf /home/pi/sbitx-on-64-bit/pi-tgz
 # Install Lightdm desktop manager
-sudo apt install lightdm lightdm-settings lightdm-autologin-greeter -y
-cd
-sudo cp sbitx-on-64-bit/lightdm-autologin-greeter.conf /etc/lightdm/lightdm.conf.d/
+#sudo apt install lightdm lightdm-settings lightdm-autologin-greeter -y
+#cd
+#sudo cp sbitx-on-64-bit/lightdm-autologin-greeter.conf /etc/lightdm/lightdm.conf.d/
 # install some background images and Pi's .config settings 
-unzip -o sbitx-on-64-bit/Backgrounds
-sudo tar -zxvf sbitx-on-64-bit/config.tgz
+#cd
+#unzip -o sbitx-on-64-bit/Backgrounds
+#sudo tar -zxvf sbitx-on-64-bit/config.tgz
 # Install Farhan's sbitx software from github'
 git clone https://github.com/afarhan/sbitx.git
 # Follow Farhan's install.txt instructions'
@@ -90,17 +95,17 @@ cd
 cd sbitx
 ./build sbitx
 # Extract cached desklets applets
-tar -zxvf sbitx-on-64-bit/cache.tgz
+#tar -zxvf sbitx-on-64-bit/cache.tgz
 # Setup sBitx desktop and add to Hamradio menu
-cd
-mkdir Desktop
-mkdir Documents
-mkdir Downloads
-mkdir Music
-mkdir Pictures
-mkdir Videos
+#cd
+#mkdir Desktop
+#mkdir Documents
+#mkdir Downloads
+#mkdir Music
+#mkdir Pictures
+#mkdir Videos
 # add color folder
-sudo unzip -o sbitx-on-64-bit/nemo-share.zip -d /usr/share
+#sudo unzip -o sbitx-on-64-bit/nemo-share.zip -d /usr/share
 #
 mkdir -p ~/.local/share/applications/
 cp sbitx-on-64-bit/sBitx.desktop ~/Desktop
