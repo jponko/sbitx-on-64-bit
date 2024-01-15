@@ -4,4 +4,6 @@ Exec=/home/pi/sbitx/sbitx
 Comment=
 Terminal=false
 Icon=/home/pi/sbitx/sbitx_icon.png
+Categories=Hamradio
+Keywords=Hamradio;
 Type=Application
