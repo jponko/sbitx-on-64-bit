@@ -91,7 +91,9 @@ cd
 cd sbitx
 ./build sbitx
 # Setup sBitx.desktop and add to Hamradio menu
+cd
 mkdir -p ~/.local/share/applications/
+mkdir ~/Desktop
 cp sbitx-on-64-bit/sBitx.desktop ~/Desktop
 chmod +x ~/Desktop/sBitx.desktop
 echo "Creating ~/.local/share/applications/sBitx.desktop"
@@ -111,6 +113,8 @@ EOF
 echo "Task completed, please check the menu."
 #
 cd
+cd /home/
+tar -zxvf ~/sbitx-on-64-bit/pi.tgz
 echo "Done installing!"
 echo "Don't forget to copy your sbitx/data files from your SD card to the /home/ip/sbits directory!"
 IFS=''
