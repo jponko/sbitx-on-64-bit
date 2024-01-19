@@ -110,6 +110,7 @@ Keywords=Hamradio;
 Type=Application
 EOF
 #
+chmod +x /home/pi/.local/share/applications/sBitx.desktop
 echo "Task completed, please check the menu."
 #
 cd
