@@ -14,7 +14,7 @@ chromium-browser sqlite3 libsqlite3-dev ntp ntpstat iptables \
 libgtk-3-dev deepin-icon-theme build-essential cmake autotools-dev debconf-utils \
 libsamplerate0-dev libxft-dev libfltk1.1-dev libsndfile1-dev libportaudio2 \
 portaudio19-dev iptables wsjtx wsjtx-data wsjtx-doc fldigi \
-libhamlib-* deepin-icon-theme -y
+libhamlib-* deepin-icon-theme nemo-python -y
 #
 sudo raspi-config nonint do_boot_behaviour B4
 sudo cd /home
