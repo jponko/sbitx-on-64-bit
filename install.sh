@@ -55,9 +55,6 @@ cd sbitx-on-64-bit
 if [ ! -d "$DIR" ]; then
         tar -zxvf fftw-3.3.10.tar.gz
         cd fftw-3.3.10
-	echo $?
-	echo "fftw-3.3.10 does exist"
-	sleep 5
         ./configure
         make
         sudo make install
