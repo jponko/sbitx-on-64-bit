@@ -2,7 +2,7 @@
 echo "----------------------------------------------"
 echo "This will take about 45 minutes to complete."
 echo "----------------------------------------------"
-sleep 5
+DIR="/home/pi/sbitx-on-64-bit/fftw-3.3.10"
 # Update and install OS
 sudo apt update -y
 sudo apt upgrade -y
@@ -14,7 +14,7 @@ chromium-browser sqlite3 libsqlite3-dev ntp ntpstat iptables \
 libgtk-3-dev deepin-icon-theme build-essential cmake autotools-dev debconf-utils \
 libsamplerate0-dev libxft-dev libfltk1.1-dev libsndfile1-dev libportaudio2 \
 portaudio19-dev iptables wsjtx wsjtx-data wsjtx-doc fldigi \
-libhamlib-* deepin-icon-theme nemo-python -y
+libhamlib-* deepin-icon-theme deepin-terminal nemo-python -y
 #
 sudo raspi-config nonint do_boot_behaviour B4
 sudo cd /home
@@ -51,14 +51,21 @@ gpio readall
 sleep 10
 cd
 cd sbitx-on-64-bit
-tar -zxvf fftw-3.3.10.tar.gz
-cd fftw-3.3.10
-./configure
-make
-sudo make install
-./configure --enable-float
-make
-sudo make install
+# Compile fftw only if directory doesn't already exist
+if [ ! -d "$DIR" ]; then
+        tar -zxvf fftw-3.3.10.tar.gz
+        cd fftw-3.3.10
+	echo $?
+	echo "fftw-3.3.10 does exist"
+	sleep 5
+        ./configure
+        make
+        sudo make install
+        ./configure --enable-float
+        make
+        sudo make install
+fi
+#
 grep "; autospawn = yes" /etc/pulse/client.conf
 if [ $? -eq 0 ]
     then sudo sed -i 's/; autospawn = yes/autospawn = no/g' /etc/pulse/client.conf
@@ -80,9 +87,6 @@ cd
 cd sbitx
 sudo cp hosts /etc/hosts
 sudo cp hostname /etc/hostname
-# Copy SD cards WSJTX ini to pi/.config
-cd sbitx-on-64bit
-cp WSJT-X.ini /home/pi/.config
 cd
 # copy some other saved settings from the original SD card
 unzip -o sbitx-on-64-bit/pi.zip -d /home/
@@ -111,14 +115,21 @@ Type=Application
 EOF
 #
 chmod +x /home/pi/.local/share/applications/sBitx.desktop
+sudo cp -p /home/pi/.local/share/applications/sBitx.desktop /usr/share/applications
 echo "Task completed, please check the menu."
 #
 cd
-cd /home/
+cd /home
 tar -zxvf ~/sbitx-on-64-bit/pi.tgz
+# Copy SD cards WSJTX ini to pi/.config
+cd
+cd sbitx-on-64-bit
+cp WSJT-X.ini /home/pi/.config
+cd
 echo "Done installing!"
 echo "Don't forget to copy your sbitx/data files from your SD card to the /home/ip/sbits directory!"
 IFS=''
+echo -e "Press [ESC] to exit..."
 echo -e "Press [ENTER] to reboot..."
 for (( i=120; i>0; i--)); do
 
