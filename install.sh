@@ -1,6 +1,6 @@
 #!/bin/bash
 LOG_FILE=install.txt
-{ 
+#{ 
 echo "----------------------------------------------"
 echo "This will take about 45 minutes to complete."
 echo "----------------------------------------------"
@@ -113,5 +113,5 @@ fi
 done
 sudo reboot
 exit
-} 2>&1 | tee -- "$LOG_FILE"
+#} 2>&1 | tee -- "$LOG_FILE"
 
