@@ -59,4 +59,4 @@ gpio=24,23=op,pu
 #Disable under-voltage warning
 avoid_warnings=1
 dtoverlay=audioinjector-wm8731-audio
-hdmi_enable_4kp60=1
+#hdmi_enable_4kp60=1
