@@ -1,4 +1,6 @@
 #!/bin/bash
+LOG_FILE=install.txt
+{ 
 echo "----------------------------------------------"
 echo "This will take about 45 minutes to complete."
 echo "----------------------------------------------"
@@ -14,7 +16,7 @@ chromium-browser sqlite3 libsqlite3-dev ntp ntpstat iptables \
 libgtk-3-dev deepin-icon-theme build-essential cmake autotools-dev debconf-utils \
 libsamplerate0-dev libxft-dev libfltk1.1-dev libsndfile1-dev libportaudio2 \
 portaudio19-dev iptables wsjtx wsjtx-data wsjtx-doc fldigi \
-libhamlib-* deepin-icon-theme deepin-terminal nemo-python -y
+libhamlib-* deepin-icon-theme deepin-terminal nemo-python bibata-cursor-theme -y
 #
 sudo raspi-config nonint do_boot_behaviour B4
 sudo cd /home
@@ -85,43 +87,11 @@ cd sbitx
 sudo cp hosts /etc/hosts
 sudo cp hostname /etc/hostname
 cd
-# copy some other saved settings from the original SD card
-unzip -o sbitx-on-64-bit/pi.zip -d /home/
 sudo ldconfig
-cd
 cd sbitx
 ./build sbitx
-# Setup sBitx.desktop and add to Hamradio menu
-cd
-mkdir -p ~/.local/share/applications/
-mkdir ~/Desktop
-cp sbitx-on-64-bit/sBitx.desktop ~/Desktop
-chmod +x ~/Desktop/sBitx.desktop
-echo "Creating ~/.local/share/applications/sBitx.desktop"
-chmod +x ~/.local/share/applications/sBitx.desktop
-cat > "/home/pi/.local/share/applications/sBitx.desktop" <<"EOF"
-[Desktop Entry]
-Name=sBitx
-Exec=/home/pi/sbitx/sbitx
-Comment=
-Terminal=false
-Icon=/home/pi/sbitx/sbitx_icon.png
-Categories=Hamradio
-Keywords=Hamradio;
-Type=Application
-EOF
-#
-chmod +x /home/pi/.local/share/applications/sBitx.desktop
-sudo cp -p /home/pi/.local/share/applications/sBitx.desktop /usr/share/applications
-echo "Task completed, please check the menu."
-#
-cd
 cd /home
 tar -zxvf ~/sbitx-on-64-bit/pi.tgz
-# Copy SD cards WSJTX ini to pi/.config
-cd
-cd sbitx-on-64-bit
-cp WSJT-X.ini /home/pi/.config
 cd
 echo "Done installing!"
 echo "Don't forget to copy your sbitx/data files from your SD card to the /home/ip/sbits directory!"
@@ -143,4 +113,5 @@ fi
 done
 sudo reboot
 exit
+} 2>&1 | tee -- "$LOG_FILE"
 
