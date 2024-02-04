@@ -20,6 +20,8 @@ See the Instructions.pdf for details.
 
 ***
 
-![DSCF0228](https://github.com/jponko/sbitx-on-64-bit/assets/23395086/96bfe38e-cf05-47dc-8dd1-ebe202da6265)
+![DSCF0233](https://github.com/jponko/sbitx-on-64-bit/assets/23395086/9644a054-2306-4482-91b7-a363406575ee)
+
+
 
 
