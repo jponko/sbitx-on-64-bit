@@ -5,7 +5,6 @@ How to install sBitx software on Raspberry OS 64-bit with cinnamon desktop
 See the Instructions.pdf for details.
 </h3>
 
-![DSCF0215](https://github.com/jponko/sbitx-on-64-bit/assets/23395086/3a3916c1-d873-4448-9928-c7b67882cdb3)
 ***
 ![Screenshot1](https://github.com/jponko/sbitx-on-64-bit/assets/23395086/2b7e34e3-3efb-4d8e-9416-5cc9e2008caf)
 ***   
