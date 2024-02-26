@@ -36,7 +36,7 @@ fi
 #fi
 echo sudo modprobe snd-aloop enable=1,1,1 index=1,2,3 
 #copy boot setup config file to /boot
-sudo cp sbitx-on-64-bit/config.txt /boot
+sudo cp sbitx-on-64-bit/config.txt /boot/firmware
 # Fix sbitx/ft8_lib/Makefile
 cd sbitx/ft8_lib
 sed -i 's/-std=c11/-std=c++0x/g' Makefile
